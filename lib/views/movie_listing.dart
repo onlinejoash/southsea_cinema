@@ -13,6 +13,8 @@ class _MovieListingState extends State<MovieListing> {
 
   int _ticketQuantity = 0;
 
+  bool _orderAdded = false;
+
 
   
   @override
@@ -56,6 +58,7 @@ class _MovieListingState extends State<MovieListing> {
                 if (value != null) {
                   setState(() {
                     _ticketQuantity = value;
+                    _orderAdded = false;
                   });
                 }
               },
@@ -78,6 +81,23 @@ class _MovieListingState extends State<MovieListing> {
             const SizedBox(width:10),
             const Text('Adult (£7.50)'),
           ],),
+          const SizedBox(height:20),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: cinemaBrand
+            ),
+            onPressed: () {
+              setState(() {
+                _orderAdded = true;
+              });
+            },
+            child: const Text('ADD TO ORDER',
+            style: TextStyle(color: Colors.white),),
+          ),
+          if (_orderAdded) ...[ //spread operator
+              const SizedBox(height:12),
+                Text('Confirmed! You have selected $_ticketQuantity tickets.'),
+          ],
           ],
         )
       ),
