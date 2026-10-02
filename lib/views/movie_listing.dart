@@ -23,9 +23,17 @@ class MovieListing extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Everything Everywhere All at Once (2022) (15+)',
+            const Text('Everything Everywhere All at Once (2022) (15)',
             style: TextStyle(fontSize: 24),),
+            const SizedBox(height:20),
             const Text('An absurdist comedy-drama about an exhausted Chinese-American laundromat owner who must save the multiverse by connecting with alternate versions of her life'),
+            const SizedBox(height:25),
+            Row(
+              children: [
+                const Text('2 Hours and 19 Minutes'),
+                const SizedBox(width:10),
+                const Text('Comedy/Drama'),
+              ],)
           ],
         )
       ),
