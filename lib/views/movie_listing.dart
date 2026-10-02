@@ -34,22 +34,21 @@ class _MovieListingState extends State<MovieListing> {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: 20,
           children: [
             const Text('Everything Everywhere All at Once (2022) (15)',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),),
-            const SizedBox(height:20),
-            const Text('An absurdist comedy-drama about an exhausted Chinese-American laundromat owner who must save the multiverse by connecting with alternate versions of her life'),
+             const Text('An absurdist comedy-drama about an exhausted Chinese-American laundromat owner who must save the multiverse by connecting with alternate versions of her life',
+             style: TextStyle(fontStyle: FontStyle.italic),),
             const SizedBox(height:25),
-            Row(
-              children: [
-                const Text('2 Hours and 19 Minutes'),
-                const SizedBox(width:10),
-                const Text('Comedy/Drama'),
-              ],),
+            const Text('Southsea Cinema Room'),
+            const Text('Thursday 22 Oct 2026, 18:00 - Ends at 20:19'),
+            const SizedBox(height:30),
+            const Text('Please note that Discounts / Memberships Benefits will be applied once you have selected your tickets'),
+            const Text('Select Quantities (Up to 5 in total)'),
             const SizedBox(height:20),
             const Text('Tickets',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),),
-            const SizedBox(height:10),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: cinemaFontWhite),),
             Row(
               children: [
             DropdownMenu<int>(
@@ -81,21 +80,21 @@ class _MovieListingState extends State<MovieListing> {
             const SizedBox(width:10),
             const Text('Adult (£7.50)'),
           ],),
-          const SizedBox(height:20),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: cinemaBrand
             ),
             onPressed: () {
-              setState(() {
+              if (_ticketQuantity > 0) {
+                setState(() {
                 _orderAdded = true;
-              });
+                });
+              }
             },
             child: const Text('ADD TO ORDER',
-            style: TextStyle(color: Colors.white),),
+            style: TextStyle(color: cinemaFontWhite),),
           ),
           if (_orderAdded) ...[ //spread operator
-              const SizedBox(height:12),
                 Text('Confirmed! You have selected $_ticketQuantity tickets.'),
           ],
           ],
