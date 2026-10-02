@@ -15,7 +15,20 @@ class MovieListing extends StatelessWidget {
         elevation: 0,
       ),
       drawer: const NavDrawer(),
-      body: const SizedBox.shrink(),
+      body: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 30,
+          vertical: 10
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Everything Everywhere All at Once (2022) (15+)',
+            style: TextStyle(fontSize: 24),),
+            const Text('An absurdist comedy-drama about an exhausted Chinese-American laundromat owner who must save the multiverse by connecting with alternate versions of her life'),
+          ],
+        )
+      ),
     );
   }
 }
