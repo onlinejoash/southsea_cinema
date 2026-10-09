@@ -14,3 +14,4 @@ class Movie {
     required this.imagePath,
   });
 }
+
