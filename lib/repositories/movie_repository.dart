@@ -21,6 +21,19 @@ class MovieRepository {
         screeningTime:'Wednesday 21st Oct 2026 7:00',
         ticketPrice: 7.50,
         imagePath: 'assets/images/Wicked_Poster.png')
-    ]; // returns list of movie objects
+
+        
+    ];
+    // returns list of movie objects
+  }
+
+  Movie? getMovieById(String id) {
+  for (final movie in getMovies()) {
+    if (movie.id == id) {
+      return movie;
+    }
+  }
+  return null;
+
   }
 }
