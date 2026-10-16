@@ -42,7 +42,7 @@ class _MovieListingState extends State<MovieListing> {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 20,
+          spacing: 8,
           children: [
             Text(
               '${widget.movie.title} (${widget.movie.ageRating})',
