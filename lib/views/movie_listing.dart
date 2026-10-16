@@ -34,19 +34,15 @@ class _MovieListingState extends State<MovieListing> {
           },
         ),
       ),
-
       drawer: const NavDrawer(),
-
       body: Container(
         padding: const EdgeInsets.symmetric(
           horizontal: 30,
           vertical: 10,
         ),
-
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 20,
-
           children: [
             Text(
               '${widget.movie.title} (${widget.movie.ageRating})',
@@ -55,20 +51,15 @@ class _MovieListingState extends State<MovieListing> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
             Image.asset(
               widget.movie.imagePath,
               width: 100,
               height: 140,
               fit: BoxFit.cover,
             ),
-
             const Text('Southsea Cinema Room'),
-
             Text(widget.movie.screeningTime),
-
             Text(widget.movie.synopsis),
-
             Row(
               children: [
                 Expanded(
@@ -76,10 +67,8 @@ class _MovieListingState extends State<MovieListing> {
                     'Tickets (${widget.movie.formattedPrice} each)',
                   ),
                 ),
-
                 DropdownMenu<int>(
                   initialSelection: _ticketQuantity,
-
                   onSelected: (int? value) {
                     if (value != null) {
                       setState(() {
@@ -88,7 +77,6 @@ class _MovieListingState extends State<MovieListing> {
                       });
                     }
                   },
-
                   dropdownMenuEntries: const [
                     DropdownMenuEntry(value: 0, label: '0'),
                     DropdownMenuEntry(value: 1, label: '1'),
@@ -97,24 +85,20 @@ class _MovieListingState extends State<MovieListing> {
                     DropdownMenuEntry(value: 4, label: '4'),
                     DropdownMenuEntry(value: 5, label: '5'),
                   ],
-
                   inputDecorationTheme: const InputDecorationThemeData(
                     filled: true,
                     fillColor: cinemaFontWhite,
                   ),
-
                   textStyle: const TextStyle(
                     color: Colors.black,
                   ),
                 ),
               ],
             ),
-
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: cinemaBrand,
               ),
-
               onPressed: () {
                 if (_ticketQuantity > 0) {
                   setState(() {
@@ -122,7 +106,6 @@ class _MovieListingState extends State<MovieListing> {
                   });
                 }
               },
-
               child: const Text(
                 'ADD TO ORDER',
                 style: TextStyle(
@@ -130,7 +113,6 @@ class _MovieListingState extends State<MovieListing> {
                 ),
               ),
             ),
-
             if (_orderAdded)
               Text(
                 'Confirmed! You have selected $_ticketQuantity tickets.',
