@@ -38,9 +38,9 @@ void main() {
       );
 
       const penceMovie = Movie(
-        id: 'test2',
-        title: 'Test Movie 2',
-        synopsis: 'Test synopsis',
+        id: 'pence',
+        title: 'Pence Movie ',
+        synopsis: 'Pence synopsis',
         ageRating: 'PG',
         runtime: '2 hours',
         screeningTime: '20:00',
