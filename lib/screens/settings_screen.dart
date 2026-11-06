@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:southsea_cinema/widgets/nav_drawer.dart';
 import 'package:southsea_cinema/models/user_settings.dart';
@@ -39,7 +38,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     super.dispose();
   }
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +58,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             const SizedBox(height: 16),
-
             TextField(
               controller: _nameController,
               decoration: const InputDecoration(
@@ -70,7 +67,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             const SizedBox(height: 16),
-
             TextField(
               controller: _addressController,
               maxLines: 3,
@@ -81,7 +77,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             const SizedBox(height: 16),
-
             TextField(
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
@@ -92,7 +87,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             const SizedBox(height: 16),
-
             Row(
               children: [
                 const Expanded(
@@ -109,7 +103,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ],
             ),
             const SizedBox(height: 20),
-
             SizedBox(
               width: double.infinity,
               child: PrimaryButton(
@@ -117,7 +110,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onPressed: _saveSettings,
               ),
             ),
-
             if (_confirmationMessage.isNotEmpty) ...[
               const SizedBox(height: 12),
               Text(
@@ -130,7 +122,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
     );
   }
-  
+
   void _saveSettings() {
     final String name = _nameController.text.trim();
     final String address = _addressController.text.trim();
@@ -147,6 +139,4 @@ class _SettingsScreenState extends State<SettingsScreen> {
       _confirmationMessage = 'Settings saved for ${settings.name}';
     });
   }
-
-
 }

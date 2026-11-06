@@ -121,8 +121,7 @@ class _MovieListingState extends State<MovieListing> {
               label: 'ADD TO ORDER',
               onPressed: _addToBasket,
             ),
-            if (_warningMessage.isNotEmpty)
-              Text(_warningMessage),
+            if (_warningMessage.isNotEmpty) Text(_warningMessage),
             if (_orderAdded)
               Text(
                 'Confirmed! You have selected $_ticketQuantity tickets.',

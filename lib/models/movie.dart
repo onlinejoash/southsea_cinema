@@ -19,7 +19,6 @@ class Movie {
     required this.imagePath,
   });
 
-  
   factory Movie.fromJson(Map<String, dynamic> json) {
     final String id = json['id'] as String;
     final String title = json['title'] as String;
@@ -45,7 +44,6 @@ class Movie {
     );
   }
 
-  
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{
       'id': id,
@@ -60,8 +58,6 @@ class Movie {
 
     return data;
   }
-
-
 
   String get formattedPrice => '£${ticketPrice.toStringAsFixed(2)}';
 }

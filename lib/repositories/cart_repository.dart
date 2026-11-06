@@ -7,7 +7,6 @@ class CartRepository {
 
   final List<CartItem> _items = [];
 
-  
   List<CartItem> getItems() {
     return List<CartItem>.unmodifiable(_items);
   }
@@ -23,11 +22,11 @@ class CartRepository {
   }
 
   int getTotalItems() {
-  int total = 0;
+    int total = 0;
 
-  for (final CartItem item in _items) {
-    total += item.quantity;
-  }
+    for (final CartItem item in _items) {
+      total += item.quantity;
+    }
 
     return total;
   }
@@ -49,7 +48,7 @@ class CartRepository {
   double getTotalDue() {
     return getSubtotal();
   }
-  
+
   void clear() {
     _items.clear();
   }

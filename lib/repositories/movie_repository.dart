@@ -45,7 +45,6 @@ class MovieRepository {
     return null;
   }
 
-  
   Future<List<Movie>> loadMoviesFromAsset({
     String assetPath = 'assets/data/movies.json',
   }) async {
@@ -66,7 +65,4 @@ class MovieRepository {
     _cachedMovies = loadedMovies;
     return loadedMovies;
   }
-
-
-
 }

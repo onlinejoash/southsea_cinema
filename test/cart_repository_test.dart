@@ -1,4 +1,3 @@
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:southsea_cinema/models/cart_item.dart';
 import 'package:southsea_cinema/models/movie.dart';
@@ -7,7 +6,8 @@ import 'package:southsea_cinema/repositories/cart_repository.dart';
 const Movie testMovie1 = Movie(
   id: 'wicked',
   title: 'Wicked',
-  synopsis: 'A musical fantasy film.',
+  synopsis:
+      'Elphaba, a young woman ridiculed for her green skin, and Galinda, a popular girl, become friends at Shiz University in the Land of Oz. After an encounter with the Wonderful Wizard of Oz, their friendship reaches a crossroads.',
   ageRating: 'PG',
   runtime: '160 minutes',
   screeningTime: '18:00',
@@ -16,7 +16,7 @@ const Movie testMovie1 = Movie(
 );
 
 const Movie testMovie2 = Movie(
-  id: 'everything-everywhere',
+  id: 'everything-everywhere-all-at-once',
   title: 'Everything Everywhere All at Once',
   synopsis: 'A science fiction adventure.',
   ageRating: '15',

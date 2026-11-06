@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:southsea_cinema/screens/settings_screen.dart';
@@ -22,14 +21,11 @@ void main() {
       const MaterialApp(home: SettingsScreen()),
     );
 
-    final Finder patronField =
-        find.widgetWithText(TextField, 'Patron Number');
+    final Finder patronField = find.widgetWithText(TextField, 'Patron Number');
 
-    final Finder addressField =
-        find.widgetWithText(TextField, 'Address');
+    final Finder addressField = find.widgetWithText(TextField, 'Address');
 
-    final Finder emailField =
-        find.widgetWithText(TextField, 'Email address');
+    final Finder emailField = find.widgetWithText(TextField, 'Email address');
 
     await tester.enterText(patronField, '12345');
     await tester.enterText(addressField, 'Guildhall Walk');

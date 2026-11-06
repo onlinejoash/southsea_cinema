@@ -52,12 +52,12 @@ void main() {
       expect(penceMovie.formattedPrice, '£7.50');
     });
 
-    
     test('JSON conversion preserves every movie field', () {
       final Map<String, dynamic> data = <String, dynamic>{
         'id': 'wicked',
         'title': 'Wicked',
-        'synopsis': 'A musical fantasy film.',
+        'synopsis':
+            'Elphaba, a young woman ridiculed for her green skin, and Galinda, a popular girl, become friends at Shiz University in the Land of Oz. After an encounter with the Wonderful Wizard of Oz, their friendship reaches a crossroads.',
         'ageRating': 'PG',
         'runtime': '160 minutes',
         'screeningTime': '18:00',
@@ -69,7 +69,8 @@ void main() {
 
       expect(movie.id, 'wicked');
       expect(movie.title, 'Wicked');
-      expect(movie.synopsis, 'A musical fantasy film.');
+      expect(movie.synopsis,
+          'Elphaba, a young woman ridiculed for her green skin, and Galinda, a popular girl, become friends at Shiz University in the Land of Oz. After an encounter with the Wonderful Wizard of Oz, their friendship reaches a crossroads.');
       expect(movie.ageRating, 'PG');
       expect(movie.runtime, '160 minutes');
       expect(movie.screeningTime, '18:00');
@@ -79,7 +80,6 @@ void main() {
       expect(movie.toJson(), data);
     });
 
-    
     test('fromJson accepts a whole-number price', () {
       final Map<String, dynamic> data = <String, dynamic>{
         'id': 'test',
@@ -97,7 +97,5 @@ void main() {
       expect(movie.ticketPrice, 5.0);
       expect(movie.ticketPrice, isA<double>());
     });
-
-
   });
 }

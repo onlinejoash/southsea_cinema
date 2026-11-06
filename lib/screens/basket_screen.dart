@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:southsea_cinema/widgets/nav_drawer.dart';
 import 'package:southsea_cinema/models/cart_item.dart';
@@ -74,13 +73,11 @@ class _BasketScreenState extends State<BasketScreen> {
 
   String _confirmationMessage = '';
 
-
-
   @override
   Widget build(BuildContext context) {
     final CartRepository cart = CartRepository.instance;
     final List<CartItem> items = cart.getItems();
-    
+
     final Widget content;
 
     if (items.isEmpty) {
@@ -113,6 +110,7 @@ class _BasketScreenState extends State<BasketScreen> {
       ),
     );
   }
+
   Widget _buildEmptyState() {
     return const Center(
       child: Padding(
@@ -124,7 +122,7 @@ class _BasketScreenState extends State<BasketScreen> {
       ),
     );
   }
-  
+
   Widget _buildLineItem(CartRepository cart, CartItem item, int index) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -156,7 +154,6 @@ class _BasketScreenState extends State<BasketScreen> {
     );
   }
 
-  
   Widget _buildTotalRow(String label, String value, {bool emphasise = false}) {
     final TextStyle style;
 
