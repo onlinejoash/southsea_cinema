@@ -3,6 +3,8 @@ import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/widgets/nav_drawer.dart';
 import 'package:southsea_cinema/models/movie.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
+import 'package:southsea_cinema/models/cart_item.dart';
+import 'package:southsea_cinema/repositories/cart_repository.dart';
 
 class MovieListing extends StatefulWidget {
   final Movie movie;
@@ -19,6 +21,28 @@ class MovieListing extends StatefulWidget {
 class _MovieListingState extends State<MovieListing> {
   int _ticketQuantity = 0;
   bool _orderAdded = false;
+  String _warningMessage = '';
+
+  void _addToBasket() {
+    if (_ticketQuantity > 0) {
+      final CartItem item = CartItem(
+        movie: widget.movie,
+        quantity: _ticketQuantity,
+      );
+
+      CartRepository.instance.addItem(item);
+
+      setState(() {
+        _orderAdded = true;
+        _warningMessage = '';
+      });
+    } else {
+      setState(() {
+        _orderAdded = false;
+        _warningMessage = 'Please select at least 1 ticket';
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,14 +119,10 @@ class _MovieListingState extends State<MovieListing> {
             ),
             PrimaryButton(
               label: 'ADD TO ORDER',
-              onPressed: () {
-                if (_ticketQuantity > 0) {
-                  setState(() {
-                    _orderAdded = true;
-                  });
-                }
-              },
+              onPressed: _addToBasket,
             ),
+            if (_warningMessage.isNotEmpty)
+              Text(_warningMessage),
             if (_orderAdded)
               Text(
                 'Confirmed! You have selected $_ticketQuantity tickets.',
