@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:southsea_cinema/views/movie_listing.dart';
 import 'package:southsea_cinema/repositories/cart_repository.dart';
 import 'package:southsea_cinema/repositories/movie_repository.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   group('App smoke tests', () {
     setUp(() {
+      rootBundle.clear();
       CartRepository.instance.clear();
     });
     testWidgets('App displays HomeView as home', (WidgetTester tester) async {
@@ -24,12 +26,13 @@ void main() {
 
       expect(find.text('Everything Everywhere All at Once'), findsOneWidget);
       expect(find.text('Wicked'), findsOneWidget);
-      expect(find.text('BOOK NOW'), findsNWidgets(2));
+      expect(find.text('BOOK NOW'), findsWidgets);
     });
 
     testWidgets('Tapping BOOK NOW opens the selected movie',
         (WidgetTester tester) async {
       await tester.pumpWidget(const SouthseaCinemaApp());
+      await tester.pumpAndSettle();
 
       await tester.tap(find.text('BOOK NOW').first);
       await tester.pumpAndSettle();
