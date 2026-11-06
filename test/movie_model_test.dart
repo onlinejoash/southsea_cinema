@@ -51,5 +51,53 @@ void main() {
       expect(wholePoundMovie.formattedPrice, '£6.00');
       expect(penceMovie.formattedPrice, '£7.50');
     });
+
+    
+    test('JSON conversion preserves every movie field', () {
+      final Map<String, dynamic> data = <String, dynamic>{
+        'id': 'wicked',
+        'title': 'Wicked',
+        'synopsis': 'A musical fantasy film.',
+        'ageRating': 'PG',
+        'runtime': '160 minutes',
+        'screeningTime': '18:00',
+        'ticketPrice': 7.50,
+        'imagePath': 'assets/images/wicked.jpg',
+      };
+
+      final Movie movie = Movie.fromJson(data);
+
+      expect(movie.id, 'wicked');
+      expect(movie.title, 'Wicked');
+      expect(movie.synopsis, 'A musical fantasy film.');
+      expect(movie.ageRating, 'PG');
+      expect(movie.runtime, '160 minutes');
+      expect(movie.screeningTime, '18:00');
+      expect(movie.ticketPrice, 7.50);
+      expect(movie.imagePath, 'assets/images/wicked.jpg');
+
+      expect(movie.toJson(), data);
+    });
+
+    
+    test('fromJson accepts a whole-number price', () {
+      final Map<String, dynamic> data = <String, dynamic>{
+        'id': 'test',
+        'title': 'Test Movie',
+        'synopsis': 'A test film.',
+        'ageRating': 'PG',
+        'runtime': '120 minutes',
+        'screeningTime': '15:00',
+        'ticketPrice': 5,
+        'imagePath': 'assets/images/wicked.jpg',
+      };
+
+      final Movie movie = Movie.fromJson(data);
+
+      expect(movie.ticketPrice, 5.0);
+      expect(movie.ticketPrice, isA<double>());
+    });
+
+
   });
 }

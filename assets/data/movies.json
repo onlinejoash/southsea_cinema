@@ -1,0 +1,22 @@
+[
+    {
+        "id": "wicked",
+        "title": "Wicked",
+        "synopsis": "A musical fantasy film.",
+        "ageRating": "PG",
+        "runtime": "160 minutes",
+        "screeningTime": "18:00",
+        "ticketPrice": 7.50,
+        "imagePath": "assets/images/Wicked_Poster.png"
+    },
+    {
+        "id": "everything-everywhere-all-at-once",
+        "title": "Everything Everywhere All at Once",
+        "synopsis": "An absurdist comedy-drama about an exhausted Chinese-American laundromat owner who must save the multiverse by connecting with alternate versions of her life",
+        "ageRating": "15",
+        "runtime": "139 minutes",
+        "screeningTime": "20:00",
+        "ticketPrice": 7.50,
+        "imagePath": "assets/images/EEAAO_Poster.png"
+    }
+]
