@@ -1,11 +1,11 @@
 class UserSettings {
-  String name;
+  String patron;
   String address;
   String email;
   bool receiveNewsletter;
 
   UserSettings({
-    this.name = '',
+    this.patron = '',
     this.address = '',
     this.email = '',
     this.receiveNewsletter = false,
