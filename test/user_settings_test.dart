@@ -5,7 +5,7 @@ void main() {
   test('UserSettings has correct default values', () {
     final UserSettings settings = UserSettings();
 
-    expect(settings.name, isEmpty);
+    expect(settings.patron, isEmpty);
     expect(settings.address, isEmpty);
     expect(settings.email, isEmpty);
     expect(settings.receiveNewsletter, isFalse);
@@ -13,13 +13,13 @@ void main() {
 
   test('UserSettings stores supplied values', () {
     final UserSettings settings = UserSettings(
-      name: 'Taylor Reed',
+      patron: 'Taylor Reed',
       address: '22 Guildhall Walk',
       email: 'taylor@example.com',
       receiveNewsletter: true,
     );
 
-    expect(settings.name, 'Taylor Reed');
+    expect(settings.patron, 'Taylor Reed');
     expect(settings.address, '22 Guildhall Walk');
     expect(settings.email, 'taylor@example.com');
     expect(settings.receiveNewsletter, isTrue);
