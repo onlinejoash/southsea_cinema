@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:southsea_cinema/widgets/nav_drawer.dart';
 import 'package:southsea_cinema/models/user_settings.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+const String prefPatron = 'user_patron';
+const String prefAddress = 'user_address';
+const String prefEmail = 'user_email';
+const String prefNewsletter = 'user_newsletter';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -13,30 +19,71 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  late TextEditingController _nameController;
+  late TextEditingController _patronController;
   late TextEditingController _addressController;
   late TextEditingController _emailController;
 
   bool _receiveNewsletter = false;
   String _confirmationMessage = '';
 
+
+
   @override
   void initState() {
     super.initState();
 
-    _nameController = TextEditingController();
+    _patronController = TextEditingController();
     _addressController = TextEditingController();
     _emailController = TextEditingController();
+    _loadSettings();
   }
 
   @override
   void dispose() {
-    _nameController.dispose();
+    _patronController.dispose();
     _addressController.dispose();
     _emailController.dispose();
 
     super.dispose();
   }
+
+ Future<void> _loadSettings() async {
+    final SharedPreferencesAsync prefs = SharedPreferencesAsync();
+    final String? savedPatron = await prefs.getString(prefPatron);
+    final String? savedAddress = await prefs.getString(prefAddress);
+    final String? savedEmail = await prefs.getString(prefEmail);
+    final bool? savedNewsletter = await prefs.getBool(prefNewsletter);
+
+    String patron = '';
+    if (savedPatron != null) {
+      patron = savedPatron;
+    }
+
+    String address = '';
+    if (savedAddress != null) {
+      address = savedAddress;
+    }
+
+    String email = '';
+    if (savedEmail != null) {
+      email = savedEmail;
+    }
+
+    bool newsletter = false;
+    if (savedNewsletter != null) {
+      newsletter = savedNewsletter;
+    }
+
+    if (!mounted) {
+      return;
+    }
+    setState(() {
+      _patronController.text = patron;
+      _addressController.text = address;
+      _emailController.text = email;
+      _receiveNewsletter = newsletter;
+    });
+ }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +106,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             const SizedBox(height: 16),
             TextField(
-              controller: _nameController,
+              controller: _patronController,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Patron Number',
@@ -123,20 +170,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  void _saveSettings() {
-    final String name = _nameController.text.trim();
+  Future<void> _saveSettings() async {
+    final String patron = _patronController.text.trim();
     final String address = _addressController.text.trim();
     final String email = _emailController.text.trim();
 
+    final SharedPreferencesAsync prefs = SharedPreferencesAsync();
+    await prefs.setString(prefPatron, patron);
+    await prefs.setString(prefAddress, address);
+    await prefs.setString(prefEmail, email);
+    await prefs.setBool(prefNewsletter, _receiveNewsletter);
+
     final UserSettings settings = UserSettings(
-      name: name,
+      patron: patron,
       address: address,
       email: email,
       receiveNewsletter: _receiveNewsletter,
     );
 
+    if (!mounted) {
+      return;
+    }
+
     setState(() {
-      _confirmationMessage = 'Settings saved for ${settings.name}';
+      _confirmationMessage = 'Settings saved for ${settings.patron}';
     });
   }
 }
