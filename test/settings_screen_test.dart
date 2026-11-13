@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:southsea_cinema/screens/settings_screen.dart';
+import 'package:southsea_cinema/views/settings_screen.dart';
 
 void main() {
   testWidgets('SettingsScreen displays form fields and switch',
