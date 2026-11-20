@@ -5,6 +5,7 @@ import 'package:southsea_cinema/repositories/cart_repository.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
 import 'package:southsea_cinema/database/cinema_db.dart';
 import 'package:southsea_cinema/models/booking.dart';
+import 'package:southsea_cinema/constants.dart';
 
 class BasketScreen extends StatefulWidget {
   const BasketScreen({super.key});
@@ -169,6 +170,7 @@ class _BasketScreenState extends State<BasketScreen> {
 
   Widget _buildBookingCard(Booking booking) {
     return Card(
+      color: cinemaSurface,
       margin: const EdgeInsets.symmetric(
         horizontal: 16.0,
         vertical: 8.0,
@@ -197,7 +199,7 @@ class _BasketScreenState extends State<BasketScreen> {
               booking.date,
               style: const TextStyle(
                 fontSize: 12,
-                color: Colors.black54,
+                color: cinemaFontMuted,
               ),
             ),
           ],

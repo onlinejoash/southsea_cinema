@@ -4,7 +4,7 @@ import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/views/home_view.dart';
 import 'package:southsea_cinema/views/basket_screen.dart';
 import 'package:southsea_cinema/views/settings_screen.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+
 
 bool isSupportedPlatform() {
   if (kIsWeb) {
@@ -17,10 +17,6 @@ bool isSupportedPlatform() {
 }
 
 void main() {
-  if (!kIsWeb && defaultTargetPlatform == TargetPlatform.windows) {
-    sqfliteFfiInit();
-    databaseFactory = databaseFactoryFfi;
-  }
   if (isSupportedPlatform()) {
     runApp(const SouthseaCinemaApp());
   } else {
