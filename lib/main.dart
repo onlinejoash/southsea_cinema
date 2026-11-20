@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/views/home_view.dart';
-import 'package:southsea_cinema/views/basket_screen.dart';
+import 'package:southsea_cinema/views/basket_view.dart';
 import 'package:southsea_cinema/views/settings_screen.dart';
 
 
