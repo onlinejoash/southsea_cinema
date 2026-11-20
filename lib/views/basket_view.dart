@@ -333,6 +333,7 @@ class _BasketScreenState extends State<BasketScreen> {
             ),
           ),
           IconButton(
+            key: Key('delete_${item.movie.id}'),
             icon: const Icon(Icons.delete_outline, color: Colors.red),
             onPressed: () {
               setState(() {

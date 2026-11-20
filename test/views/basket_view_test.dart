@@ -207,4 +207,75 @@ void main() {
 
     expect(find.text('No bookings yet'), findsOneWidget);
   });
+
+  testWidgets('Deleting the middle film keeps the other two', (
+    WidgetTester tester,
+  ) async {
+    const Movie middleMovie = Movie(
+      id: 'everything',
+      title: 'Everything Everywhere All at Once',
+      synopsis: 'A woman travels through multiple universes.',
+      ageRating: '15',
+      runtime: '139 minutes',
+      screeningTime: '19:00',
+      ticketPrice: 9.0,
+      imagePath: 'assets/images/everything.jpg',
+    );
+
+    const Movie lastMovie = Movie(
+      id: 'barbie',
+      title: 'Barbie',
+      synopsis: 'Barbie explores the real world.',
+      ageRating: '12A',
+      runtime: '114 minutes',
+      screeningTime: '20:00',
+      ticketPrice: 8.0,
+      imagePath: 'assets/images/barbie.jpg',
+    );
+
+    CartRepository.instance.addItem(
+      const CartItem(movie: testMovie, quantity: 1),
+    );
+
+    CartRepository.instance.addItem(
+      const CartItem(movie: middleMovie, quantity: 1),
+    );
+
+    CartRepository.instance.addItem(
+      const CartItem(movie: lastMovie, quantity: 1),
+    );
+
+    await tester.runAsync(() async {
+      await tester.pumpWidget(
+        const MaterialApp(home: BasketScreen()),
+      );
+      await tester.pumpAndSettle();
+    });
+
+    expect(find.text('1 x Wicked'), findsOneWidget);
+    expect(
+      find.text('1 x Everything Everywhere All at Once'),
+      findsOneWidget,
+    );
+    expect(find.text('1 x Barbie'), findsOneWidget);
+
+    await tester.tap(
+      find.byKey(const Key('delete_everything')),
+    );
+
+    await tester.pump();
+
+    final List<CartItem> items = CartRepository.instance.getItems();
+
+    expect(items.length, 2);
+    expect(items[0].movie.id, 'wicked');
+    expect(items[1].movie.id, 'barbie');
+
+    expect(find.text('1 x Wicked'), findsOneWidget);
+    expect(
+      find.text('1 x Everything Everywhere All at Once'),
+      findsNothing,
+    );
+    expect(find.text('1 x Barbie'), findsOneWidget);
+  });
 }
