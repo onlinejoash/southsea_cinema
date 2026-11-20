@@ -26,8 +26,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _receiveNewsletter = false;
   String _confirmationMessage = '';
 
-
-
   @override
   void initState() {
     super.initState();
@@ -47,7 +45,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     super.dispose();
   }
 
- Future<void> _loadSettings() async {
+  Future<void> _loadSettings() async {
     final SharedPreferencesAsync prefs = SharedPreferencesAsync();
     final String? savedPatron = await prefs.getString(prefPatron);
     final String? savedAddress = await prefs.getString(prefAddress);
@@ -83,7 +81,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       _emailController.text = email;
       _receiveNewsletter = newsletter;
     });
- }
+  }
 
   @override
   Widget build(BuildContext context) {

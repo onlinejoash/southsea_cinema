@@ -13,12 +13,11 @@ bool isSupportedPlatform() {
   if (defaultTargetPlatform == TargetPlatform.android) {
     return true;
   }
-  return false; 
+  return false;
 }
 
-
 void main() {
-    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.windows) {
+  if (!kIsWeb && defaultTargetPlatform == TargetPlatform.windows) {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
   }
