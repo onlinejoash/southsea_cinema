@@ -20,21 +20,30 @@ class MovieCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Text(
-                  movie.title,
-                  style: const TextStyle(
-                      color: cinemaBrandDark,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
-                ),
-                const SizedBox(width: 5),
-                Text('(${movie.ageRating})',
-                    style:
-                        const TextStyle(color: cinemaFontMuted, fontSize: 9)),
-              ],
-            ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      movie.title,
+                      style: const TextStyle(
+                        color: cinemaBrandDark,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    '(${movie.ageRating})',
+                    style: const TextStyle(
+                      color: cinemaFontMuted,
+                      fontSize: 9,
+                    ),
+                  ),
+                ],
+              ),
+const SizedBox(height: 8),
+
             const SizedBox(height: 8),
             Row(
               children: [
