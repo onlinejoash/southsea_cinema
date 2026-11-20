@@ -5,7 +5,6 @@ import 'package:southsea_cinema/views/home_view.dart';
 import 'package:southsea_cinema/views/basket_view.dart';
 import 'package:southsea_cinema/views/settings_screen.dart';
 
-
 bool isSupportedPlatform() {
   if (kIsWeb) {
     return false;

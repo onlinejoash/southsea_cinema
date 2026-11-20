@@ -207,5 +207,4 @@ void main() {
 
     expect(find.text('No bookings yet'), findsOneWidget);
   });
-
 }

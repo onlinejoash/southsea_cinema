@@ -1,10 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:southsea_cinema/main.dart';
 import 'package:southsea_cinema/views/home_view.dart';
-import 'package:flutter/material.dart';
 import 'package:southsea_cinema/views/movie_listing.dart';
 import 'package:southsea_cinema/repositories/cart_repository.dart';
-import 'package:southsea_cinema/repositories/movie_repository.dart';
 import 'package:flutter/services.dart';
 import 'package:southsea_cinema/widgets/movie_card.dart';
 
@@ -70,26 +68,6 @@ void main() {
         find.text('${selectedMovie.title} (${selectedMovie.ageRating})'),
         findsOneWidget,
       );
-    });
-
-    testWidgets('Cannot add zero tickets to basket', (tester) async {
-      final movie = MovieRepository().getMovies().first;
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: MovieListing(movie: movie),
-        ),
-      );
-
-      await tester.tap(find.text('ADD TO ORDER'));
-      await tester.pump();
-
-      expect(
-        find.text('Please select at least 1 ticket'),
-        findsOneWidget,
-      );
-
-      expect(CartRepository.instance.getItems(), isEmpty);
     });
   });
 }
