@@ -3,13 +3,62 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:southsea_cinema/main.dart';
 import 'package:southsea_cinema/views/home_view.dart';
 import 'package:southsea_cinema/views/movie_listing.dart';
+import 'package:southsea_cinema/views/settings_screen.dart';
 import 'package:southsea_cinema/repositories/cart_repository.dart';
 import 'package:flutter/services.dart';
 import 'package:southsea_cinema/widgets/movie_card.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences_platform_interface/in_memory_shared_preferences_async.dart';
 import 'package:shared_preferences_platform_interface/shared_preferences_async_platform_interface.dart';
 
 void main() {
+  testWidgets('UnsupportedPlatformApp displays the Android-only message',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const UnsupportedPlatformApp());
+
+    expect(find.byType(MaterialApp), findsOneWidget);
+    expect(
+      find.text(
+        'This app saves orders with SQLite and is set up to run on '
+        'Android only. Stop the app and run it on an Android emulator '
+        'or device instead.',
+      ),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('SouthseaCinemaApp starts in dark mode by default',
+      (WidgetTester tester) async {
+    SharedPreferencesAsyncPlatform.instance =
+        InMemorySharedPreferencesAsync.empty();
+
+    await tester.pumpWidget(const SouthseaCinemaApp());
+    await tester.pump();
+
+    final MaterialApp app =
+        tester.widget<MaterialApp>(find.byType(MaterialApp));
+
+    expect(app.themeMode, ThemeMode.dark);
+  });
+
+  testWidgets('SouthseaCinemaApp starts in light mode from preferences',
+      (WidgetTester tester) async {
+    SharedPreferencesAsyncPlatform.instance =
+        InMemorySharedPreferencesAsync.empty();
+
+    final SharedPreferencesAsync prefs = SharedPreferencesAsync();
+    await prefs.setBool(prefDarkMode, false);
+
+    await tester.pumpWidget(const SouthseaCinemaApp());
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+
+    final MaterialApp app =
+        tester.widget<MaterialApp>(find.byType(MaterialApp));
+
+    expect(app.themeMode, ThemeMode.light);
+  });
+
   testWidgets('Light and dark theme colors have readable contrast',
       (WidgetTester tester) async {
     SharedPreferencesAsyncPlatform.instance =
