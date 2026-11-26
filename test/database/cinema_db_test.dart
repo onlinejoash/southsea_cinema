@@ -1,11 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:southsea_cinema/database/cinema_db.dart';
 import 'package:southsea_cinema/models/booking.dart';
+import 'package:path/path.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() {
   setUp(() async {
     sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfiNoIsolate;
 
     final Database database = await databaseFactoryFfiNoIsolate.openDatabase(
       inMemoryDatabasePath,
@@ -87,5 +89,46 @@ void main() {
     expect(bookings[0].bookingNumber, 1003);
     expect(bookings[1].bookingNumber, 1002);
     expect(bookings[2].bookingNumber, 1001);
+  });
+
+  test('database getter returns the same cached database', () async {
+    final Database database = await CinemaDatabase.instance.database;
+
+    final Database cachedDatabase =
+        await CinemaDatabase.instance.database;
+
+    expect(cachedDatabase, same(database));
+  });
+
+  test('close clears the cached database', () async {
+    final Database database = await CinemaDatabase.instance.database;
+
+    await CinemaDatabase.instance.close();
+
+    expect(database.isOpen, isFalse);
+
+    await CinemaDatabase.instance.close();
+  });
+
+  test('uncached database initialises tables and sample bookings', () async {
+    await CinemaDatabase.instance.close();
+    CinemaDatabase.instance.setDatabase(null);
+
+    final String folder = await getDatabasesPath();
+    final String filePath = join(folder, 'cinema_data.db');
+    await databaseFactoryFfiNoIsolate.deleteDatabase(filePath);
+
+    final List<Booking> bookings =
+        await CinemaDatabase.instance.getAllBookings();
+
+    expect(bookings.length, 3);
+    expect(bookings[0].bookingNumber, 1003);
+    expect(bookings[0].summary, '2 x Wicked');
+    expect(bookings[1].bookingNumber, 1002);
+    expect(bookings[1].summary, '1 x Everything Everywhere All at Once');
+    expect(bookings[2].bookingNumber, 1001);
+    expect(bookings[2].summary, '1 x Wicked');
+
+    await CinemaDatabase.instance.close();
   });
 }
