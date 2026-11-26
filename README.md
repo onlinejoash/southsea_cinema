@@ -36,7 +36,7 @@ A Flutter mobile app for browsing Southsea Cinema screenings, choosing tickets, 
 
 ## Platform support
 
-The app explicitly supports Android. It does not run in Flutter Web or on desktop platforms because booking data is stored with SQLite and the app exits to an unsupported-platform message outside Android.
+The app is configured to run on Android only. An unsupported-platform message is displayed when attempting to run the app on web or desktop.
 
 Use an Android emulator or a physical Android device.
 
@@ -84,6 +84,11 @@ flutter test --coverage
 ```
 
 The coverage report is written to `coverage/lcov.info`.
+
+### Test Coverage
+
+- Starting Coverage: 86.3%
+- Final Coverage: TBA
 
 ## Project structure
 
