@@ -88,7 +88,8 @@ The coverage report is written to `coverage/lcov.info`.
 ### Test Coverage
 
 - Starting Coverage: 86.3%
-- Final Coverage: TBA
+- Final Coverage: 97.4%
+- Total passing tests: 54
 
 ## Project structure
 

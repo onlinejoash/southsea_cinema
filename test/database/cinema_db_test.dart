@@ -94,8 +94,7 @@ void main() {
   test('database getter returns the same cached database', () async {
     final Database database = await CinemaDatabase.instance.database;
 
-    final Database cachedDatabase =
-        await CinemaDatabase.instance.database;
+    final Database cachedDatabase = await CinemaDatabase.instance.database;
 
     expect(cachedDatabase, same(database));
   });

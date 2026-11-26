@@ -14,8 +14,7 @@ void main() {
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
-  testWidgets('HomeView displays the app bar',
-      (WidgetTester tester) async {
+  testWidgets('HomeView displays the app bar', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
         home: HomeView(),
