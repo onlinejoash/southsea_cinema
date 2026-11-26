@@ -46,6 +46,8 @@ class _MovieListingState extends State<MovieListing> {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colors = Theme.of(context).colorScheme;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(appTitle),
@@ -109,11 +111,10 @@ class _MovieListingState extends State<MovieListing> {
                   ],
                   inputDecorationTheme: const InputDecorationThemeData(
                     filled: true,
-                    fillColor: cinemaFontWhite,
+                  ).copyWith(
+                    fillColor: colors.surface,
                   ),
-                  textStyle: const TextStyle(
-                    color: Colors.black,
-                  ),
+                  textStyle: TextStyle(color: colors.onSurface),
                 ),
               ],
             ),

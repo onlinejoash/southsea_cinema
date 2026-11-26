@@ -8,9 +8,17 @@ const String prefPatron = 'user_patron';
 const String prefAddress = 'user_address';
 const String prefEmail = 'user_email';
 const String prefNewsletter = 'user_newsletter';
+const String prefDarkMode = 'user_dark_mode';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  final ThemeMode themeMode;
+  final ValueChanged<ThemeMode>? onThemeModeChanged;
+
+  const SettingsScreen({
+    super.key,
+    this.themeMode = ThemeMode.dark,
+    this.onThemeModeChanged,
+  });
 
   @override
   State<SettingsScreen> createState() {
@@ -24,16 +32,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
   late TextEditingController _emailController;
 
   bool _receiveNewsletter = false;
+  bool _darkMode = true;
   String _confirmationMessage = '';
 
   @override
   void initState() {
     super.initState();
 
+    _darkMode = widget.themeMode == ThemeMode.dark;
     _patronController = TextEditingController();
     _addressController = TextEditingController();
     _emailController = TextEditingController();
     _loadSettings();
+  }
+
+  @override
+  void didUpdateWidget(SettingsScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.themeMode != oldWidget.themeMode) {
+      _darkMode = widget.themeMode == ThemeMode.dark;
+    }
   }
 
   @override
@@ -146,6 +164,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   },
                 ),
               ],
+            ),
+            SwitchListTile(
+              title: const Text('Dark mode'),
+              value: _darkMode,
+              onChanged: (bool value) {
+                setState(() {
+                  _darkMode = value;
+                });
+                widget.onThemeModeChanged?.call(
+                  value ? ThemeMode.dark : ThemeMode.light,
+                );
+              },
             ),
             const SizedBox(height: 20),
             SizedBox(

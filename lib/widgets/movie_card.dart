@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/models/movie.dart';
 import 'package:southsea_cinema/views/movie_listing.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
@@ -12,8 +11,11 @@ class MovieCard extends StatelessWidget {
 // build function
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final ColorScheme colors = theme.colorScheme;
+
     return Card(
-      color: cinemaBackground,
+      color: theme.scaffoldBackgroundColor,
       margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -25,8 +27,8 @@ class MovieCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     movie.title,
-                    style: const TextStyle(
-                      color: cinemaBrandDark,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      color: colors.primary,
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
@@ -35,8 +37,8 @@ class MovieCard extends StatelessWidget {
                 const SizedBox(width: 5),
                 Text(
                   '(${movie.ageRating})',
-                  style: const TextStyle(
-                    color: cinemaFontMuted,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: colors.onSurfaceVariant,
                     fontSize: 9,
                   ),
                 ),
@@ -56,8 +58,7 @@ class MovieCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     movie.synopsis,
-                    style: TextStyle(
-                      color: cinemaFontWhite,
+                    style: theme.textTheme.bodySmall?.copyWith(
                       fontSize: 10,
                     ),
                   ),

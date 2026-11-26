@@ -5,7 +5,6 @@ import 'package:southsea_cinema/repositories/cart_repository.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
 import 'package:southsea_cinema/database/cinema_db.dart';
 import 'package:southsea_cinema/models/booking.dart';
-import 'package:southsea_cinema/constants.dart';
 
 class BasketScreen extends StatefulWidget {
   const BasketScreen({super.key});
@@ -170,7 +169,7 @@ class _BasketScreenState extends State<BasketScreen> {
 
   Widget _buildBookingCard(Booking booking) {
     return Card(
-      color: cinemaSurface,
+      color: Theme.of(context).colorScheme.surface,
       margin: const EdgeInsets.symmetric(
         horizontal: 16.0,
         vertical: 8.0,
@@ -199,7 +198,6 @@ class _BasketScreenState extends State<BasketScreen> {
               booking.date,
               style: const TextStyle(
                 fontSize: 12,
-                color: cinemaFontMuted,
               ),
             ),
           ],
@@ -232,14 +230,14 @@ class _BasketScreenState extends State<BasketScreen> {
         child: Text(_errorMessage),
       );
     } else if (_bookings.isEmpty) {
-      bookingsBody = const Center(
+      bookingsBody = Center(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 32.0),
+          padding: const EdgeInsets.symmetric(vertical: 32.0),
           child: Text(
             'No bookings yet',
             style: TextStyle(
               fontSize: 16,
-              color: Colors.grey,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
         ),
@@ -303,12 +301,15 @@ class _BasketScreenState extends State<BasketScreen> {
   }
 
   Widget _buildEmptyState() {
-    return const Center(
+    return Center(
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 32.0),
+        padding: const EdgeInsets.symmetric(vertical: 32.0),
         child: Text(
           'Your basket is empty',
-          style: TextStyle(fontSize: 16, color: Colors.grey),
+          style: TextStyle(
+            fontSize: 16,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+          ),
         ),
       ),
     );
@@ -334,7 +335,10 @@ class _BasketScreenState extends State<BasketScreen> {
           ),
           IconButton(
             key: Key('delete_${item.movie.id}'),
-            icon: const Icon(Icons.delete_outline, color: Colors.red),
+            icon: Icon(
+              Icons.delete_outline,
+              color: Theme.of(context).colorScheme.error,
+            ),
             onPressed: () {
               setState(() {
                 cart.removeItem(index);
