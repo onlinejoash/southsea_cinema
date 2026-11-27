@@ -16,23 +16,25 @@ A Flutter mobile app for browsing Southsea Cinema screenings, choosing tickets, 
 
 ## Screenshots
 
-> Replace each placeholder with a screenshot of the app. Suggested filenames are included below.
 
 ### Home
 
+![A display of my homepage](images/home_screenshot.png)
 <!-- Screenshot: add an image at images/home_screenshot.png -->
 
 ### Movie details
 
 <!-- Screenshot: add an image at images/movie_details_screenshot.png -->
+![A preview of a movie detail](images/movie_details_screenshot.png)
 
 ### Basket and past bookings
 
 <!-- Screenshot: add an image at images/basket_screenshot.png -->
+![An example of my basket and past bookings](images/basket_screenshot.png)
 
 ### Settings
 
-<!-- Screenshot: add an image at images/settings_screenshot.png -->
+![heres is a pic of the settings](images/settings_screenshot.png)
 
 ## Platform support
 
